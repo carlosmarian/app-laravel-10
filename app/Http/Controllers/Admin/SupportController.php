@@ -61,7 +61,9 @@ class SupportController extends Controller
         if(!$support = Support::find($id)){
             return redirect()->back();
         }
-        $support->delete;
+
+        $support->delete();
+
         return redirect()->route('supports.index');
     }
 }
