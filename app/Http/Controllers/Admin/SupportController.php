@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateSupportRequest;
 use App\Models\Support;
 use Dotenv\Util\Str;
 use Illuminate\Http\Request;
@@ -37,8 +38,10 @@ class SupportController extends Controller
     }
 
 
-    public function store(Request $request, Support $support){
-        $data = $request->all();
+    public function store(StoreUpdateSupportRequest $request, Support $support){
+        //$data = $request->all();
+        //O "validated" traz só os campos validados
+        $data = $request->validated();
         $data['status'] = 'A';
 
         $support->create($data);
@@ -46,7 +49,7 @@ class SupportController extends Controller
         return redirect()->route('supports.index');
     }
 
-    public function update(Request $request, Support $supports, string | int $id){
+    public function update(StoreUpdateSupportRequest $request, Support $supports, string | int $id){
         if(!$support = $supports->find($id)){
             return redirect()->back();
         }
