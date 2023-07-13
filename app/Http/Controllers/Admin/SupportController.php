@@ -39,7 +39,6 @@ class SupportController extends Controller
     }
 
     public function edit(string $id){
-
         if(!$support = $this->service->findOne($id)){
             return redirect()->back();
         }
@@ -70,12 +69,10 @@ class SupportController extends Controller
 
         $support->update($request->only(['subject', 'body']));
         */
-
         $support = $this->service->update(UpdateSupportDTO::makeFromRequest($request));
         if(!$support){
             return redirect()->back();
         }
-
 
         return redirect()->route('supports.index');
     }
