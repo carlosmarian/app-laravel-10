@@ -10,11 +10,11 @@
 <tbody>
 @foreach ($supports as $support)
     <tr>
-        <td>{{$support->subject}}</td>
-        <td>{{$support->status}}</td>
-        <td>{{$support->body}}</td>
-        <td> <a href="{{ route('supports.show', [$support->id]) }}"> Show </a>
-            <a href="{{ route('supports.edit', [$support->id]) }}"> Edit </a>
+        <td>{{$support['subject']}}</td>
+        <td>{{$support['status']}}</td>
+        <td>{{$support['body']}}</td>
+        <td> <a href="{{ route('supports.show', [$support['id']]) }}"> Show </a>
+            <a href="{{ route('supports.edit', [$support['id']]) }}"> Edit </a>
         </td>
     </tr>
 @endforeach
