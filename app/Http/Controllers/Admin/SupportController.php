@@ -19,9 +19,14 @@ class SupportController extends Controller
     }
 
 
-    public function index(Support $support){
+    public function index(Request $request)
+    {
+        $supports = $this->service->paginate(
+                            page: $request->get('page', 1),
+                            totalPerPage: $request->get('per_page', 15),
+                            filter: $request->filter
+                        );
 
-        $supports = $this->service->getAll();
         return view('admin.supports/index', compact('supports'));
     }
 
