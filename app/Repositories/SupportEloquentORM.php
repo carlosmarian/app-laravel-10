@@ -24,7 +24,9 @@ class SupportEloquentORM implements SupportRepositoryInterface
             }
         )
         ->paginate($totalPerPage, ['*'], 'page', $page);
-        dd($result);
+        dd(new PaginationPresenter($result));
+        return new PaginationPresenter($result);
+
     }
 
     public function getAll(string $filter = null) : array
